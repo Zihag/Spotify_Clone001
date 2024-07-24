@@ -8,7 +8,9 @@ import 'package:spotify_app/core/configs/assets/app_vector.dart';
 import 'package:spotify_app/data/models/auth/create_user_req.dart';
 import 'package:spotify_app/domain/usecases/auth/signup.dart';
 import 'package:spotify_app/presentation/auth/pages/signin.dart';
+
 import 'package:spotify_app/presentation/home/pages/home.dart';
+
 import 'package:spotify_app/service_locator.dart';
 
 class SignupPage extends StatelessWidget {
@@ -31,6 +33,7 @@ class SignupPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
+
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(
           vertical: 50,
@@ -83,6 +86,7 @@ class SignupPage extends StatelessWidget {
                   title: 'Create Account')
             ],
           ),
+
         ),
       ),
     );

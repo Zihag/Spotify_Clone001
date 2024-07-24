@@ -20,12 +20,14 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
       );
       return Right('Sign in was successful');
     } on FirebaseAuthException catch (e) {
+
       String message = '';
       if (e.code == 'invalid-email') {
         message = 'No user found for that email';
       }
       if (e.code == 'invalid-credential') {
         message = 'Wrong password for that user';
+
       }
 
       return Left(message);
@@ -35,6 +37,7 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
   @override
   Future<Either> signup(CreateUserReq createUserReq) async {
     try {
+
       var data = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: createUserReq.email,
         password: createUserReq.password,
