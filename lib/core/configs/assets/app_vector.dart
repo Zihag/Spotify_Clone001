@@ -7,5 +7,6 @@ class AppVector {
   static const String moon = '${basePath}moon$format';
   static const String topPattern = '${basePath}top_pattern$format';
   static const String botPattern = '${basePath}bottom_pattern$format';
+  static const String homeTopCard = '${basePath}home_top_card$format';
 
 }

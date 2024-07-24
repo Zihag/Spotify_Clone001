@@ -8,7 +8,9 @@ import 'package:spotify_app/core/configs/assets/app_vector.dart';
 import 'package:spotify_app/data/models/auth/create_user_req.dart';
 import 'package:spotify_app/domain/usecases/auth/signup.dart';
 import 'package:spotify_app/presentation/auth/pages/signin.dart';
-import 'package:spotify_app/presentation/root/pages/root.dart';
+
+import 'package:spotify_app/presentation/home/pages/home.dart';
+
 import 'package:spotify_app/service_locator.dart';
 
 class SignupPage extends StatelessWidget {
@@ -31,52 +33,60 @@ class SignupPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _registerText(),
-            const SizedBox(
-              height: 50,
-            ),
-            _fullNameField(context),
-            const SizedBox(
-              height: 20,
-            ),
-            _emailField(context),
-            const SizedBox(
-              height: 20,
-            ),
-            _passwordField(context),
-            const SizedBox(
-              height: 50,
-            ),
-            BasicAppButton(
-                onPressed: () async {
-                  var result = await sl<SignupUseCase>().call(
-                      params: CreateUserReq(
-                    fullName: _fullName.text.toString(),
-                    email: _email.text.toString(),
-                    password: _password.text.toString(),
-                  ));
-                  result.fold(
-                    (l) {
-                      var snackbar = SnackBar(
-                        content: Text(l),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackbar);
-                    },
-                    (r) {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  const RootPage()),
-                          (route) => false);
-                    },
-                  );
-                },
-                title: 'Create Account')
-          ],
+
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(
+          vertical: 50,
+          horizontal: 30
+        ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _registerText(),
+              const SizedBox(
+                height: 50,
+              ),
+              _fullNameField(context),
+              const SizedBox(
+                height: 20,
+              ),
+              _emailField(context),
+              const SizedBox(
+                height: 20,
+              ),
+              _passwordField(context),
+              const SizedBox(
+                height: 50,
+              ),
+              BasicAppButton(
+                  onPressed: () async {
+                    var result = await sl<SignupUseCase>().call(
+                        params: CreateUserReq(
+                      fullName: _fullName.text.toString(),
+                      email: _email.text.toString(),
+                      password: _password.text.toString(),
+                    ));
+                    result.fold(
+                      (l) {
+                        var snackbar = SnackBar(
+                          content: Text(l),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                      },
+                      (r) {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    const HomePage()),
+                            (route) => false);
+                      },
+                    );
+                  },
+                  title: 'Create Account')
+            ],
+          ),
+
         ),
       ),
     );
