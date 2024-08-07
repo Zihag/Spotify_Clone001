@@ -6,7 +6,9 @@ import 'package:spotify_app/core/configs/assets/app_vector.dart';
 import 'package:spotify_app/data/models/auth/signin_user_req.dart';
 import 'package:spotify_app/domain/usecases/auth/signin.dart';
 import 'package:spotify_app/presentation/auth/pages/signup.dart';
+
 import 'package:spotify_app/presentation/home/pages/home.dart';
+
 import 'package:spotify_app/service_locator.dart';
 
 class SigninPage extends StatelessWidget {
@@ -66,6 +68,7 @@ class SigninPage extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (BuildContext context) =>
                                   const HomePage()),
+
                           (route) => false);
                     },
                   );
